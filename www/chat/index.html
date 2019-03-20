@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WebsSockets</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="chatUser">
+		<input name="user" value="steve"/>
+	</div>
+    <div id="chatControls">
+    <input id="message" placeholder="Type your message">
+    <button id="send">Send</button>
+    </div>
+    <div id="chat">    <!-- Built by JS --> </div>
+    
+    <template id="chatmessage">
+    	<div class="message-row">
+    		<div class="from"><span class="sender"></span> <span class="time"></span></div>
+    		<div class="content"></div>
+    	</div>
+    </template>
+    
+    <script src="wsocket.js"></script>
+</body>
+</html>
