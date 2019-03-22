@@ -1,0 +1,9 @@
+You can split up your schema into more than one file to keep it organized. However, there can be only one root Query and only one root Mutation types that will contain all the query and mutation operations.
+
+GraphQL Java Tools works with four types of Resolver classes:
+
+GraphQLResolver<T> to resolve complex types.
+GraphQLQueryResolver to define the operations of the root Query type.
+GraphQLMutationResolver to define the operations of the root Mutation type.
+GraphQLSubscriptionResolver to define the operations of the root Subscription type.
+

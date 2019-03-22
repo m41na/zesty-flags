@@ -1,5 +1,10 @@
 schema {
-    query: QueryType
+    query: Query
+}
+
+type Query {
+	countries: [Country]!
+	country(name: String!): Country
 }
 
 type Country {
@@ -42,7 +47,7 @@ type Language {
     nativeName: String!
 }
 
-type Translation {
+type Translations {
 	de: String!,
     es: String!,
     fr: String!,

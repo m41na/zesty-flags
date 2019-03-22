@@ -7,8 +7,7 @@
     </layout>
   </appender>
   
-  <logger name="com.practicaldime.jetty.mvc" level="TRACE"/>
-  
+  <logger name="com.practicaldime" level="DEBUG"/>  
 
   <root level="debug">
     <appender-ref ref="STDOUT" />

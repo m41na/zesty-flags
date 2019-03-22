@@ -5,6 +5,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.function.Supplier;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import com.practicaldime.flags.entity.Country;
@@ -18,10 +22,12 @@ import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
 
+@Component
 public class GraphQLProvider implements Supplier<GraphQL> {
 
 	private GraphQL graphQL;
-	private final CountriesRepo repo = new CountriesRepo();
+	@Autowired
+	private CountriesRepo repo;
 	private final DataFetcher<List<Country>> countriesFetcher = environment -> repo.getCountries();
 
 	public void init() throws IOException {
@@ -41,12 +47,15 @@ public class GraphQLProvider implements Supplier<GraphQL> {
 
 	private RuntimeWiring buildWiring() {
 		return RuntimeWiring.newRuntimeWiring()
-				.type("Query", builder -> builder.dataFetcher("countries", countriesFetcher)).build();
+				.type("Query", builder -> builder
+						.dataFetcher("countries", countriesFetcher)
+						.dataFetcher("country", env -> repo.getCountry(env.getArgument("name")))).build();
 	}
 	
 	@Override
+	@Bean
 	public GraphQL get() {
-		if(this.graphQL != null) {
+		if(this.graphQL == null) {
 			try {
 				init();
 			} catch (IOException e) {
