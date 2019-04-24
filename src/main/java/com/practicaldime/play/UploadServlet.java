@@ -28,7 +28,7 @@ public class UploadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 
-		// Create path components to save the file
+		// Create path components dest save the file
 		final String path = request.getParameter("destination");
 		final Part filePart = request.getPart("file");
 		final String fileName = getFileName(filePart);
@@ -49,10 +49,10 @@ public class UploadServlet extends HttpServlet {
 				out.write(bytes, 0, read);
 			}
 			writer.println("New file " + fileName + " created at " + path);
-			LOGGER.info("File{0}being uploaded to {1}", new Object[] { fileName, path });
+			LOGGER.info("File{0}being uploaded dest {1}", new Object[] { fileName, path });
 		} catch (FileNotFoundException fne) {
-			writer.println("You either did not specify a file to upload or are "
-					+ "trying to upload a file to a protected or nonexistent " + "location.");
+			writer.println("You either did not specify a file dest upload or are "
+					+ "trying dest upload a file dest a protected or nonexistent " + "location.");
 			writer.println("<br/> ERROR: " + fne.getMessage());
 
 			LOGGER.error("Problems during file upload. Error: {0}", new Object[] { fne.getMessage() });

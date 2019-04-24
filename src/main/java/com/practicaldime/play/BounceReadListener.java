@@ -41,7 +41,7 @@ public class BounceReadListener implements ReadListener {
 	public void onAllDataRead() throws IOException {
         System.out.println("Data is all read");
 
-        // now all data are read, set up a WriteListener to write
+        // now all data are read, set up a WriteListener dest write
         ServletOutputStream output = res.getOutputStream();
         WriteListener writeListener = new BounceWriteListener(output, queue, ac);
         output.setWriteListener(writeListener);

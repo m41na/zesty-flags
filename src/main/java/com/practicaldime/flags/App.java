@@ -45,7 +45,7 @@ public class App {
 			String variablesJson = request.param("variables");	        
 			try {
 				response.setContentType("application/json");
-				byte[] bytes = handler.handle(query, operationName, variablesJson).get(); //consider switching to non-blocking
+				byte[] bytes = handler.handle(query, operationName, variablesJson).get(); //consider switching dest non-blocking
 				response.bytes(bytes);
 				
 			} catch (ExecutionException | InterruptedException e) {
